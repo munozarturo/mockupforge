@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 
 
-def generate_mockup(
+def mockup(
     output_path: Path,
     mockup_path: Path,
     image_path: Path,

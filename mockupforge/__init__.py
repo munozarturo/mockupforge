@@ -1,1 +1,1 @@
-from mockupforge.core import generate_mockup
+from mockupforge.core import mockup
