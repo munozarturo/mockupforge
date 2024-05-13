@@ -23,11 +23,6 @@ def mockupforge_mockup(
     fg_red,
     fg_green,
     fg_blue,
-    fg_opacity,
-    bg_red,
-    bg_green,
-    bg_blue,
-    bg_opacity,
 ):
     # Open the mockup image
     mockup_image = pdb.gimp_file_load(mockup_path, mockup_path)
@@ -96,31 +91,8 @@ def mockupforge_mockup(
             # Set the foreground color
             pdb.gimp_context_set_foreground(color)
 
-            # Set the opacity
-            pdb.gimp_context_set_opacity(fg_opacity)
-
             # Fill the layer with the foreground color
             pdb.gimp_drawable_fill(layer, FOREGROUND_FILL)
-
-            # Pop the context
-            pdb.gimp_context_pop()
-            # Do not exit loop since there are multiple foreground layers
-
-        if layer.name.startswith("mf_bg:"):
-            # Create a new RGB color
-            color = gimpcolor.RGB(bg_red / 255.0, bg_green / 255.0, bg_blue / 255.0)
-
-            # Push the current context
-            pdb.gimp_context_push()
-
-            # Set the foreground color
-            pdb.gimp_context_set_background(color)
-
-            # Set the opacity
-            pdb.gimp_context_set_opacity(bg_opacity)
-
-            # Fill the layer with the foreground color
-            pdb.gimp_drawable_fill(layer, BACKGROUND_FILL)
 
             # Pop the context
             pdb.gimp_context_pop()
@@ -152,11 +124,6 @@ register(
         (PF_INT, "fg_red", "Foreground Red", 255),
         (PF_INT, "fg_green", "Foreground Green", 255),
         (PF_INT, "fg_blue", "Foreground Blue", 255),
-        (PF_INT, "fg_opacity", "Foreground Opacity", 100),
-        (PF_INT, "bg_red", "Background Red", 255),
-        (PF_INT, "bg_green", "Background Green", 255),
-        (PF_INT, "bg_blue", "Background Blue", 255),
-        (PF_INT, "bg_opacity", "Background Opacity", 100),
     ],
     [],
     mockupforge_mockup,

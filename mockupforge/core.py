@@ -7,15 +7,13 @@ def generate_mockup(
     mockup_path: Path,
     image_path: Path,
     foreground: list[int],
-    background: list[int],
 ):
     # generate gimp command for mockup
     cmd = (
         "gimp -i -b "
         f"'(python-fu-mockupforge-mockup RUN-NONINTERACTIVE "
         f'"{str(output_path)}" "{str(mockup_path)}" "{str(image_path)}" '
-        f"{foreground[0]} {foreground[1]} {foreground[2]} {foreground[3]} "
-        f"{background[0]} {background[1]} {background[2]} {background[3]}"
+        f"{foreground[0]} {foreground[1]} {foreground[2]} "
         ")' -b '(gimp-quit 1)'"
     )
 
