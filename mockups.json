@@ -1,11 +1,11 @@
 {
     "tshirt": {
-        "dimensions": [0, 0]
+        "dimensions": [676, 865]
     },
     "hoodie": {
-        "dimensions": [0, 0]
+        "dimensions": [525, 525]
     },
     "sweater": {
-        "dimensions": [0, 0]
+        "dimensions": [697, 677]
     }
 }
