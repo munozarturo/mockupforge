@@ -1,14 +1,11 @@
 {
     "tshirt": {
-        "path": "tshirt.xcf",
         "dimensions": [0, 0]
     },
     "hoodie": {
-        "path": "hoodie.xcf",
         "dimensions": [0, 0]
     },
     "sweater": {
-        "path": "sweater.xcf",
         "dimensions": [0, 0]
     }
 }
