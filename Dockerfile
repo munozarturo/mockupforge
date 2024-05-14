@@ -13,8 +13,8 @@ WORKDIR /app
 # Create a directory for temporary files
 RUN mkdir -p temp
 
-# Install Flask and any other Python dependencies
-RUN pip3 install flask python-dotenv boto3
+# Install Flask, Gunicorn, and any other Python dependencies
+RUN pip3 install flask python-dotenv boto3 gunicorn
 
 # Create the GIMP plug-ins directory if it doesn't exist
 RUN mkdir -p ~/.config/GIMP/2.10/plug-ins
@@ -25,8 +25,8 @@ RUN cp -r ./gimp/plug-ins/* ~/.config/GIMP/2.10/plug-ins/
 # Set the permissions for the copied scripts
 RUN chmod +x ~/.config/GIMP/2.10/plug-ins/*
 
-# Expose the Flask port
-EXPOSE 5000
+# Expose the port on which Gunicorn will run
+EXPOSE 8080
 
-# Run the Flask application
-CMD ["python3", "app.py"]
+# Run the Flask application with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]

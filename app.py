@@ -120,7 +120,3 @@ def mockup_get_id(api_key: str, mockup_id: str):
     except ClientError as e:
         if e.response['Error']['Code'] == '404':
             return make_response(jsonify({"status": "error", "message": "requested resource does not exist.", "data": None}), 200)
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
