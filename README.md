@@ -13,6 +13,16 @@ This is a microservice that uses a Docker container to run a Python Flask server
 2. Build the Docker container `sudo docker build -t mockupforge-ms`.
 3. Run the container `sudo docker run mockupforge-ms`.
 
+## Deployment
+
+To deploy the microservice to a cloud platform:
+
+1. Build the Docker image and push it to a container registry.
+2. Deploy the container to your chosen cloud platform (e.g., AWS ECS, Google Cloud Run, Kubernetes).
+3. Set the necessary environment variables and configurations.
+4. Expose the appropriate port and configure any required networking settings.
+5. Monitor and scale the service as needed.
+
 ## REST API
 
 The Flask server will be accessible at `http://localhost:8080`.
@@ -78,13 +88,3 @@ Response:
    }
  }
  ```
-
-## Deployment
-
-To deploy the microservice to a cloud platform:
-
-1. Build the Docker image and push it to a container registry.
-2. Deploy the container to your chosen cloud platform (e.g., AWS ECS, Google Cloud Run, Kubernetes).
-3. Set the necessary environment variables and configurations.
-4. Expose the appropriate port and configure any required networking settings.
-5. Monitor and scale the service as needed.
