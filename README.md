@@ -43,6 +43,7 @@ Response:
            "dimensions": ["max_width", "max_height"]
       },
       "mockup_type_2": {
+           "dimensions": ["max_width", "max_height"]
       }
     }
   }
@@ -57,9 +58,9 @@ It is highly recommended to query this endpoint before generating mockups since 
 
  ```json
  {
-   "type": "mockup_type",
-   "image": "image_url",
-   "color": [r, g, b]
+   "type": "mockup_type", // string, must be in mockups
+   "image": "image_url", // string
+   "color": ["r", "g", "b"] // float[], length=3
  }
  ```
 
