@@ -5,6 +5,8 @@
     </div>
 </template>
 
-<script lang="ts" setup></script>
-
-<style></style>
+<script lang="ts" setup>
+useHead({
+    title: "Mockup Forge",
+});
+</script>
