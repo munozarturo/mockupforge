@@ -32,6 +32,10 @@ def get_available_mockups() -> dict[str, dict[str, str | list[int]]]:
         return json.load(f)
 
 
+@app.get("/")
+def ping():
+    return make_response(jsonify({"status": "ok", "message": "hello", "data": None}), 200)
+
 @app.post("/v1/<api_key>/mockup")
 def mockup_post(api_key: str):
     req_id: str = generate_request_id()
@@ -60,9 +64,14 @@ def mockup_post(api_key: str):
         if len(req["color"]) != 3:
             return make_response(jsonify({"status": "error", "message": "Expected `color` to have three values.", "data": None}), 400)
 
-        urllib.request.urlretrieve(
-            req["image"], f"temp/{req_id}/source_image_{req_id}"
-        )
+        try:
+            urllib.request.urlretrieve(
+                req["image"], f"temp/{req_id}/source_image_{req_id}"
+            )
+        except Exception as e:
+            print(e)
+            
+            return make_response(jsonify({"status": "error", "message": "failed to retrieve image", "data": None}), 500)
 
         mockup(
             f"temp/{req_id}/output_image_{req_id}.png",
@@ -74,15 +83,17 @@ def mockup_post(api_key: str):
         s3 = boto3.client(
             "s3", 
             aws_access_key_id=os.environ["AWS_ACCESS_KEY"], 
-            aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"]
+            aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
         )
         
-        s3.upload_file(f"temp/{req_id}/output_image_{req_id}.png", "mockupforge", f"{req_id}.png")
+        s3.upload_file(f"temp/{req_id}/output_image_{req_id}.png", "mockupforge-mockups", f"{req_id}.png")
 
         return make_response(jsonify({"status": "ok", "message": "success", "data": {
             "mockup_id": req_id
         }}), 200)
     except Exception as e:
+        print(e)
+
         return make_response(jsonify({"status": "error", "message": "unknow server error", "data": None}), 500)
     finally:
         shutil.rmtree(f"temp/{req_id}")
@@ -112,10 +123,10 @@ def mockup_get_id(api_key: str, mockup_id: str):
     )
 
     try:
-        s3.head_object(Bucket="mockupforge", Key=f"{mockup_id}.png")
+        s3.head_object(Bucket="mockupforge-mockups", Key=f"{mockup_id}.png")
 
         return make_response(jsonify({"status": "ok", "message": "success", "data": {
-           "mockup": f"https://mockupforge.s3.us-east-2.amazonaws.com/{mockup_id}.png"
+           "mockup": f"https://mockupforge-mockups.s3.us-east-2.amazonaws.com/{mockup_id}.png"
         }}), 200)
     except ClientError as e:
         if e.response['Error']['Code'] == '404':

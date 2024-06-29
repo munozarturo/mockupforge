@@ -10,8 +10,8 @@ This is a microservice that uses a Docker container to run a Python Flask server
 ## Local Setup
 
 1. Set the environment variables in a `.env` file. A template `.env` file is provided in `.env.template`.
-2. Build the Docker container `sudo docker build -t mockupforge-ms`.
-3. Run the container `sudo docker run mockupforge-ms`.
+2. Build the Docker container `sudo docker build -t mockupforge-ms .`.
+3. Run the container `sudo docker run -p 8080:8080 mockupforge-ms`.
 
 ## Deployment
 
