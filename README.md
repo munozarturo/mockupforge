@@ -66,26 +66,4 @@ It is highly recommended to query this endpoint before generating mockups since 
 
 - Response
 
- ```json
- {
-   "status": "ok",
-   "message": "success",
-   "data": {
-     "mockup_id": "generated_mockup_id"
-   }
- }
- ```
-
-### `GET /v1/<api_key>/mockup/<mockup_id>`: Get a generated mockup
-
-Response:
-
- ```json
- {
-   "status": "ok",
-   "message": "success",
-   "data": {
-     "mockup": "mockup_url"
-   }
- }
- ```
+ Will return a response with type of `mime/file`, which is the generated mockup.
