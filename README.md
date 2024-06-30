@@ -26,13 +26,27 @@ To deploy the microservice to a cloud platform:
 
 The Flask server will be accessible at `http://localhost:8080`.
 
+## Authentication
+
+All API endpoints require authentication. Include your API key in the Authorization header of your requests:
+
+```text
+Authorization: Bearer YOUR_API_KEY_HERE
+```
+
 ## API Endpoints
 
-### `GET /v1/<api_key>/mockup`: Get available mockup types
+### `GET /v1/mockup`: Get available mockup types
+
+Headers:
+
+```text
+Authorization: Bearer YOUR_API_KEY_HERE
+```
 
 Response:
 
- ```json
+```json
 {
   "status": "ok",
   "message": "success",
@@ -49,20 +63,27 @@ Response:
 }
 ```
 
-It is highly recommended to query this endpoint before generating mockups since it contains the available mockup types where are passed into `POST /v1/<api_key>/mockup` in the request body as `type` and it also includes the maximum dimensions of the image. It is important to note these since the image will always be rescaled by the mockup generator to fit these dimensions. It is recommended to include blank space in the desired design to fit these dimensions to avoid image transformation.
+It is highly recommended to query this endpoint before generating mockups since it contains the available mockup types where are passed into `POST /v1/mockup` in the request body as `type` and it also includes the maximum dimensions of the image. It is important to note these since the image will always be rescaled by the mockup generator to fit these dimensions. It is recommended to include blank space in the desired design to fit these dimensions to avoid image transformation.
 
-### `POST /v1/<api_key>/mockup`: Generate a new mockup
+### POST /v1/mockup
 
-- Request
+Headers:
 
- ```json
- {
-   "type": "mockup_type", // string, must be in mockups
-   "image": "image_url", // string
-   "color": ["r", "g", "b"] // float[], length=3
- }
- ```
+```text
+Authorization: Bearer YOUR_API_KEY_HERE
+Content-Type: application/json
+```
 
-- Response
+Request Body:
 
- Will return a response with type of `mime/file`, which is the generated mockup.
+```json
+{
+  "type": "mockup_type", // string, must be in mockups
+  "image": "image_url", // string
+  "color": ["r", "g", "b"] // float[], length=3
+}
+```
+
+Response:
+
+Will return a response with type of image/png, which is the generated mockup.
