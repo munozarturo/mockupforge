@@ -14,7 +14,7 @@ WORKDIR /app
 RUN mkdir -p temp
 
 # Install Flask, Gunicorn, and any other Python dependencies
-RUN pip3 install flask python-dotenv boto3 gunicorn
+RUN pip3 install flask python-dotenv gunicorn
 
 # Create the GIMP plug-ins directory if it doesn't exist
 RUN mkdir -p ~/.config/GIMP/2.10/plug-ins

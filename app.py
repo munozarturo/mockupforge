@@ -21,13 +21,20 @@ def generate_request_id() -> str:
     Returns:
         str: unique ID
     """
-
     return hex(hash(datetime.now().timestamp() + random.randint(0, 1000000)))[2:]
 
 
 def get_available_mockups() -> dict[str, dict[str, str | list[int]]]:
     with open("mockups.json", "r") as f:
         return json.load(f)
+
+
+def check_auth():
+    auth_header = request.headers.get("Authorization")
+    if not auth_header:
+        return False
+    api_key = auth_header.split(" ")[-1]
+    return api_key == os.environ["API_KEY"]
 
 
 @app.get("/")
@@ -37,8 +44,14 @@ def ping():
     )
 
 
-@app.post("/v1/<api_key>/mockup")
-def mockup_post(api_key: str):
+@app.post("/v1/mockup")
+def mockup_post():
+    if not check_auth():
+        return make_response(
+            jsonify({"status": "error", "message": "Unauthorized.", "data": None}),
+            401,
+        )
+
     req_id: str = generate_request_id()
     os.mkdir(f"temp/{req_id}")
 
@@ -46,12 +59,6 @@ def mockup_post(api_key: str):
 
     try:
         req = request.get_json()
-
-        if api_key != os.environ["API_KEY"]:
-            return make_response(
-                jsonify({"status": "error", "message": "Unauthorized.", "data": None}),
-                401,
-            )
 
         if not "type" in req:
             return make_response(
@@ -166,7 +173,7 @@ def mockup_post(api_key: str):
 
         return make_response(
             jsonify(
-                {"status": "error", "message": "unknow server error", "data": None}
+                {"status": "error", "message": "unknown server error", "data": None}
             ),
             500,
         )
@@ -174,14 +181,14 @@ def mockup_post(api_key: str):
         shutil.rmtree(f"temp/{req_id}")
 
 
-@app.get("/v1/<api_key>/mockup")
-def mockup_get(api_key: str):
-    mockups: dict[str, dict[str, str | list[int]]] = get_available_mockups()
-
-    if api_key != os.environ["API_KEY"]:
+@app.get("/v1/mockup")
+def mockup_get():
+    if not check_auth():
         return make_response(
             jsonify({"status": "error", "message": "Unauthorized.", "data": None}), 401
         )
+
+    mockups: dict[str, dict[str, str | list[int]]] = get_available_mockups()
 
     return make_response(
         jsonify({"status": "ok", "message": "success", "data": {"mockups": mockups}}),

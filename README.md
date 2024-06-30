@@ -5,7 +5,6 @@ This is a microservice that uses a Docker container to run a Python Flask server
 ## Prerequisites
 
 - Docker installed on your local machine
-- AWS account with access to S3 (for storing generated mockups)
 
 ## Local Setup
 
