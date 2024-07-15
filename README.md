@@ -1,6 +1,26 @@
+<div align="center">
+  <picture>
+    <source srcset="https://www.munozarturo.com/assets/mockupforge/ms-logo-long.svg">
+    <img alt="mockupforge-ms" src="https://www.munozarturo.com/assets/mockupforge/ms-logo-long.svg" width="50%" height="40%">
+  </picture>
+</div>
+
+<!-- omit from toc -->
 # Mockup Forge Microservice
 
 This is a microservice that uses a Docker container to run a Python Flask server that generates mockups using the GIMP CLI.
+
+<!-- omit from toc -->
+# Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Local Setup](#local-setup)
+- [Deployment](#deployment)
+- [REST API](#rest-api)
+- [Authentication](#authentication)
+- [API Endpoints](#api-endpoints)
+  - [`GET /v1/mockup`: Get available mockup types](#get-v1mockup-get-available-mockup-types)
+  - [POST /v1/mockup](#post-v1mockup)
 
 ## Prerequisites
 
