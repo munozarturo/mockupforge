@@ -8,7 +8,7 @@
 <!-- omit from toc -->
 # Mockup Forge
 
-This is a microservice that uses a Docker container to run a Python Flask server that generates mockups using the GIMP CLI. To interact with it you can use the [web ui](https://github.com/munozarturo/mockupforge) to generate mockups.
+This is a microservice that uses a Docker container to run a Python Flask server that generates mockups using the GIMP CLI.
 
 <!-- omit from toc -->
 # Table of Contents
