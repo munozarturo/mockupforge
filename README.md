@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
-    <source srcset="https://www.munozarturo.com/assets/mockupforge/ms-logo-github.svg">
-    <img alt="mockupforge-ms" src="https://www.munozarturo.com/assets/mockupforge/ms-logo-github.svg" width="50%" height="40%">
+    <source srcset="https://www.munozarturo.com/assets/mockupforge/logo-github.svg">
+    <img alt="mockupforge-ms" src="https://www.munozarturo.com/assets/mockupforge/logo-github.svg" width="50%" height="40%">
   </picture>
 </div>
 
@@ -19,8 +19,8 @@ This is a microservice that uses a Docker container to run a Python Flask server
 - [REST API](#rest-api)
 - [Authentication](#authentication)
 - [API Endpoints](#api-endpoints)
-  - [`GET /v1/mockup`: Get available mockup types](#get-v1mockup-get-available-mockup-types)
-  - [POST /v1/mockup](#post-v1mockup)
+  - [`GET /v1/mockup`](#get-v1mockup)
+  - [`POST /v1/mockup`](#post-v1mockup)
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ Authorization: Bearer YOUR_API_KEY_HERE
 
 ## API Endpoints
 
-### `GET /v1/mockup`: Get available mockup types
+### `GET /v1/mockup`
 
 Headers:
 
@@ -85,7 +85,7 @@ Response:
 
 It is highly recommended to query this endpoint before generating mockups since it contains the available mockup types where are passed into `POST /v1/mockup` in the request body as `type` and it also includes the maximum dimensions of the image. It is important to note these since the image will always be rescaled by the mockup generator to fit these dimensions. It is recommended to include blank space in the desired design to fit these dimensions to avoid image transformation.
 
-### POST /v1/mockup
+### `POST /v1/mockup`
 
 Headers:
 
