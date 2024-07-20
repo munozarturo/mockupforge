@@ -96,7 +96,7 @@ Content-Type: application/json
 
 Request Body:
 
-```json
+```ts
 {
   "type": "mockup_type", // string, must be in mockups
   "image": "image_url", // string
