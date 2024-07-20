@@ -177,9 +177,9 @@ Here's a step-by-step guide to create a mockup using Mockup Forge:
 
    This will generate a `mockup-mf.png` file with your mockup:
 
-   <div align="center">
-     <picture>
-       <source srcset="https://www.munozarturo.com/assets/mockupforge/mockup-mf.png">
-       <img alt="Mockup Forge Hoodie" src="https://www.munozarturo.com/assets/mockupforge/mockup-mf.png" width="50%" height="auto">
-     </picture>
-   </div>
+  <div align="center">
+    <picture>
+      <source srcset="https://www.munozarturo.com/assets/mockupforge/mockup-mf.png">
+      <img alt="Mockup Forge Hoodie" src="https://www.munozarturo.com/assets/mockupforge/mockup-mf.png" width="50%" height="auto" style="border-radius: 6px;">
+    </picture>
+  </div>
