@@ -30,7 +30,7 @@ This is a microservice that uses a Docker container to run a Python Flask server
 
 1. Set the environment variables in a `.env` file. A template `.env` file is provided in `.env.template`.
 2. Build the Docker container `sudo docker build -t mockupforge-ms .`.
-3. Run the container `sudo docker run -p 8080:8080 mockupforge-ms`.
+3. Run the container `sudo docker run -p 5000:8080 mockupforge-ms`.
 
 ## Deployment
 
@@ -44,7 +44,7 @@ To deploy the microservice to a cloud platform:
 
 ## REST API
 
-The Flask server will be accessible at `http://localhost:8080`.
+The Flask server will be accessible at `http://localhost:5000`.
 
 ## Authentication
 
