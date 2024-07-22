@@ -128,7 +128,7 @@ Here's a step-by-step guide to create a mockup using Mockup Forge:
 3. Define `API_KEY` in the `.env` file (you can choose your own):
 
    ```bash
-   API_KEY="portugal"
+   API_KEY="api-key"
    ```
 
 4. Build and run the Docker image:
@@ -141,8 +141,8 @@ Here's a step-by-step guide to create a mockup using Mockup Forge:
 5. Get the available mockups:
 
    ```bash
-   curl -X GET "127.0.0.1:8080/v1/mockup" \
-        -H "Authorization: Bearer portugal"
+   curl -X GET "127.0.0.1:5000/v1/mockup" \
+        -H "Authorization: Bearer api-key"
    ```
 
    You should receive a response like this:
@@ -164,9 +164,9 @@ Here's a step-by-step guide to create a mockup using Mockup Forge:
 6. Make a mockup request:
 
    ```bash
-   curl -X POST "127.0.0.1:8080/v1/mockup" \
+   curl -X POST "127.0.0.1:5000/v1/mockup" \
         -H "Content-Type: application/json" \
-        -H "Authorization: Bearer portugal" \
+        -H "Authorization: Bearer api-key" \
         -d '{
             "type": "hoodie",
             "image": "http://munozarturo.com/assets/mockupforge/mockup-design-mf.png",
